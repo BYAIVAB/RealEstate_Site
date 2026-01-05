@@ -1,8 +1,66 @@
-# Welcome to your Lovable project
+# Real Estate Site
 
-## Project info
+A modern, full-featured real estate platform built with React, TypeScript, and Vite. This project allows users to search, buy, rent, and list properties with advanced filters, voice search, and a beautiful UI inspired by leading real estate websites.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Features
+- Hero section with cityscape background and animated overlays
+- Advanced search bar with city, property type, and voice input (Web Speech API)
+- Functional search in both hero and navbar
+- Property listings fetched from a real estate API
+- Featured and recent properties on the landing page
+- Responsive design for desktop and mobile
+- Pages for Buy, Rent, Projects, PG/Hostels, Plot & Land, Commercial, Agents, and more
+- Favorites system and user authentication
+- Modern UI components using Tailwind CSS
+
+## Getting Started
+
+### Prerequisites
+- Node.js (v18 or higher recommended)
+- npm or yarn
+
+### Installation
+1. Clone the repository:
+   ```
+   git clone https://github.com/BYAIVAB/RealEstate_Site.git
+   cd RealEstate_Site/home-finder-hub
+   ```
+2. Install dependencies:
+   ```
+   npm install
+   # or
+   yarn install
+   ```
+3. Configure your real estate API endpoint in `src/lib/realEstateApi.ts`.
+
+### Running Locally
+```
+npm run dev
+# or
+yarn dev
+```
+Visit [http://localhost:8080](http://localhost:8080) in your browser.
+
+## Deployment
+You can deploy this project to Vercel, Netlify, or any static hosting platform. Connect your GitHub repository and follow the platform’s instructions.
+
+## Folder Structure
+- `src/components/` — UI components
+- `src/pages/` — Page components
+- `src/lib/` — API integration and utilities
+- `src/data/` — Mock data (for development)
+- `public/` — Static assets
+
+## Customization
+- Update the API endpoint and authentication in `src/lib/realEstateApi.ts`.
+- Add or modify pages and components as needed.
+- Style with Tailwind CSS and custom classes.
+
+## License
+MIT
+
+---
+Feel free to contribute or open issues for improvements!
 
 ## How can I edit this code?
 
