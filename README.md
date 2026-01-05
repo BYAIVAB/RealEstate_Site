@@ -2,6 +2,21 @@
 
 A modern, full-featured real estate platform built with React, TypeScript, and Vite. This project allows users to search, buy, rent, and list properties with advanced filters, voice search, and a beautiful UI inspired by leading real estate websites.
 
+## Frontend Tech Stack
+- **React** (with functional components and hooks)
+- **TypeScript** (type safety for all code)
+- **Vite** (fast development server and build tool)
+- **Tailwind CSS** (utility-first CSS framework for styling)
+- **Radix UI** (accessible, unstyled UI primitives)
+- **Lucide React** (icon library)
+- **React Router DOM** (routing and navigation)
+- **Web Speech API** (voice search integration)
+- **React Context API** (global state management for auth, favorites, etc.)
+- **ESLint & Prettier** (code linting and formatting)
+- **PostCSS** (CSS processing)
+- **React Query** (for data fetching and caching, if used)
+- **Other utility libraries** as needed
+
 ## Features
 - Hero section with cityscape background and animated overlays
 - Advanced search bar with city, property type, and voice input (Web Speech API)
@@ -66,15 +81,15 @@ Feel free to contribute or open issues for improvements!
 
 There are several ways of editing your application.
 
-**Use Lovable**
+**Use **
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+Simply visit the [ Project](https://.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
 
-Changes made via Lovable will be committed automatically to this repo.
+Changes made via  will be committed automatically to this repo.
 
 **Use your preferred IDE**
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in .
 
 The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
@@ -120,12 +135,12 @@ This project is built with:
 
 ## How can I deploy this project?
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+Simply open [](https://.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
 
-## Can I connect a custom domain to my Lovable project?
+## Can I connect a custom domain to my  project?
 
 Yes, you can!
 
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Read more here: [Setting up a custom domain](https://docs..dev/features/custom-domain#custom-domain)
