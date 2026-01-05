@@ -40,3 +40,8 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Hero background image class for landing page */
+.hero-bg-image {
+  background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920');
+}

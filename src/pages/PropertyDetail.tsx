@@ -79,12 +79,16 @@ const PropertyDetail: React.FC = () => {
               <button
                 onClick={prevImage}
                 className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-card/80 backdrop-blur-sm hover:bg-card transition-colors shadow-medium"
+                aria-label="Previous image"
+                title="Previous image"
               >
                 <ChevronLeft className="h-6 w-6" />
               </button>
               <button
                 onClick={nextImage}
                 className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-card/80 backdrop-blur-sm hover:bg-card transition-colors shadow-medium"
+                aria-label="Next image"
+                title="Next image"
               >
                 <ChevronRight className="h-6 w-6" />
               </button>
@@ -106,6 +110,8 @@ const PropertyDetail: React.FC = () => {
                   className={`w-16 h-12 rounded-lg overflow-hidden border-2 transition-all ${
                     idx === currentImageIndex ? 'border-accent' : 'border-transparent opacity-70 hover:opacity-100'
                   }`}
+                  aria-label={`View image ${idx + 1}`}
+                  title={`View image ${idx + 1}`}
                 >
                   <img src={img} alt="" className="w-full h-full object-cover" />
                 </button>

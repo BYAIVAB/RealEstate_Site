@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import NavbarSearchBar from './NavbarSearchBar';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/contexts/AuthContext';
 import { 
@@ -46,7 +47,7 @@ const Navbar: React.FC = () => {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${navBg}`}>
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="flex items-center justify-between h-16 lg:h-20 gap-4">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
             <Building2 className={`h-8 w-8 ${isScrolled || !isHomePage ? 'text-accent' : 'text-accent'}`} />
@@ -54,6 +55,11 @@ const Navbar: React.FC = () => {
               PropMart
             </span>
           </Link>
+
+          {/* Desktop Search Bar */}
+          <div className="hidden lg:flex flex-1 justify-center">
+            <NavbarSearchBar />
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">

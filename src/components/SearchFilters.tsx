@@ -67,7 +67,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ onFiltersChange }) => {
     <div className="space-y-6">
       {/* Status Toggle */}
       <div>
-        <Label className="text-sm font-medium mb-3 block">Listing Type</Label>
+        <label className="text-sm font-medium mb-3 block">Listing Type</label>
         <div className="flex gap-2">
           <Button
             variant={status === 'sale' ? 'accent' : 'outline'}
@@ -90,7 +90,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ onFiltersChange }) => {
 
       {/* City */}
       <div>
-        <Label className="text-sm font-medium mb-3 block">City</Label>
+        <label className="text-sm font-medium mb-3 block">City</label>
         <Select value={city} onValueChange={(value) => updateFilters({ city: value })}>
           <SelectTrigger>
             <div className="flex items-center gap-2">
@@ -99,7 +99,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ onFiltersChange }) => {
             </div>
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">All Cities</SelectItem>
+            <SelectItem value="all">All Cities</SelectItem>
             {cities.map((c) => (
               <SelectItem key={c} value={c}>{c}</SelectItem>
             ))}
@@ -109,9 +109,9 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ onFiltersChange }) => {
 
       {/* Price Range */}
       <div>
-        <Label className="text-sm font-medium mb-3 block">
+        <label className="text-sm font-medium mb-3 block">
           Price Range: {formatPrice(minPrice, status as 'rent' | 'sale')} - {formatPrice(maxPrice, status as 'rent' | 'sale')}
-        </Label>
+        </label>
         <div className="px-2">
           <Slider
             value={[minPrice, maxPrice]}
@@ -131,7 +131,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ onFiltersChange }) => {
 
       {/* BHK */}
       <div>
-        <Label className="text-sm font-medium mb-3 block">BHK</Label>
+        <label className="text-sm font-medium mb-3 block">BHK</label>
         <div className="flex flex-wrap gap-2">
           {bhkOptions.map((bhk) => {
             const isSelected = selectedBhk.includes(bhk.toString());
@@ -156,7 +156,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ onFiltersChange }) => {
 
       {/* Property Type */}
       <div>
-        <Label className="text-sm font-medium mb-3 block">Property Type</Label>
+        <label className="text-sm font-medium mb-3 block">Property Type</label>
         <div className="space-y-2">
           {propertyTypes.map((type) => {
             const isSelected = selectedTypes.includes(type.value);
@@ -216,7 +216,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ onFiltersChange }) => {
               )}
             </Button>
           </SheetTrigger>
-          <SheetContent side="left" className="w-80 overflow-y-auto">
+          <SheetContent side="left">
             <SheetHeader>
               <SheetTitle className="font-display">Filters</SheetTitle>
             </SheetHeader>

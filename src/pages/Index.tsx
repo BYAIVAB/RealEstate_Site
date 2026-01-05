@@ -1,10 +1,10 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import HeroSearch from '@/components/HeroSearch';
+import HeroSearchBar from '@/components/HeroSearchBar';
 import PropertyCard from '@/components/PropertyCard';
 import { Button } from '@/components/ui/button';
-import { mockProperties } from '@/data/mockProperties';
+import { fetchProperties } from '@/lib/realEstateApi';
 import { Link } from 'react-router-dom';
 import { 
   Building2, 
@@ -19,8 +19,47 @@ import {
 } from 'lucide-react';
 
 const Index: React.FC = () => {
-  const featuredProperties = mockProperties.filter(p => p.isFeatured && p.isApproved).slice(0, 4);
-  const recentProperties = mockProperties.filter(p => p.isApproved).slice(0, 8);
+  const [featuredProperties, setFeaturedProperties] = React.useState<any[]>([]);
+  const [recentProperties, setRecentProperties] = React.useState<any[]>([]);
+  const [loadingFeatured, setLoadingFeatured] = React.useState(true);
+  const [loadingRecent, setLoadingRecent] = React.useState(true);
+  const [errorFeatured, setErrorFeatured] = React.useState<string | null>(null);
+  const [errorRecent, setErrorRecent] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    async function loadFeatured() {
+      setLoadingFeatured(true);
+      setErrorFeatured(null);
+      try {
+        const data = await fetchProperties({});
+        const featured = Array.isArray(data)
+          ? data.filter((p: any) => p.isFeatured && p.isApproved).slice(0, 4)
+          : [];
+        setFeaturedProperties(featured);
+      } catch (err: any) {
+        setErrorFeatured(err.message || 'Failed to load featured properties');
+      } finally {
+        setLoadingFeatured(false);
+      }
+    }
+    async function loadRecent() {
+      setLoadingRecent(true);
+      setErrorRecent(null);
+      try {
+        const data = await fetchProperties({});
+        const recent = Array.isArray(data)
+          ? data.filter((p: any) => p.isApproved).sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).slice(0, 4)
+          : [];
+        setRecentProperties(recent);
+      } catch (err: any) {
+        setErrorRecent(err.message || 'Failed to load recent properties');
+      } finally {
+        setLoadingRecent(false);
+      }
+    }
+    loadFeatured();
+    loadRecent();
+  }, []);
 
   return (
     <div className="min-h-screen bg-background">
@@ -30,10 +69,7 @@ const Index: React.FC = () => {
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
         {/* Background */}
         <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920)',
-          }}
+          className="absolute inset-0 bg-cover bg-center hero-bg-image"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-primary/60" />
         </div>
@@ -60,7 +96,7 @@ const Index: React.FC = () => {
             </p>
 
             <div className="animate-slide-up stagger-2">
-              <HeroSearch />
+              <HeroSearchBar />
             </div>
 
             {/* Stats */}
@@ -114,11 +150,19 @@ const Index: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {featuredProperties.map((property, index) => (
-              <div key={property.id} className={`animate-slide-up stagger-${index + 1}`}>
-                <PropertyCard property={property} />
-              </div>
-            ))}
+            {loadingFeatured ? (
+              <div className="col-span-4 text-center py-12 text-lg text-muted-foreground">Loading properties...</div>
+            ) : errorFeatured ? (
+              <div className="col-span-4 text-center py-12 text-destructive">{errorFeatured}</div>
+            ) : featuredProperties.length === 0 ? (
+              <div className="col-span-4 text-center py-12 text-muted-foreground">No featured properties found.</div>
+            ) : (
+              featuredProperties.map((property: any, index: number) => (
+                <div key={property.id || index} className={`animate-slide-up stagger-${index + 1}`}>
+                  <PropertyCard property={property} />
+                </div>
+              ))
+            )}
           </div>
         </div>
       </section>
@@ -264,9 +308,17 @@ const Index: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {recentProperties.slice(0, 4).map((property) => (
-              <PropertyCard key={property.id} property={property} />
-            ))}
+            {loadingRecent ? (
+              <div className="col-span-4 text-center py-12 text-lg text-muted-foreground">Loading properties...</div>
+            ) : errorRecent ? (
+              <div className="col-span-4 text-center py-12 text-destructive">{errorRecent}</div>
+            ) : recentProperties.length === 0 ? (
+              <div className="col-span-4 text-center py-12 text-muted-foreground">No recent properties found.</div>
+            ) : (
+              recentProperties.map((property: any, index: number) => (
+                <PropertyCard key={property.id || index} property={property} />
+              ))
+            )}
           </div>
         </div>
       </section>
